@@ -3,20 +3,20 @@ RSpec.describe 'map pattern' do
   it 'test 1' do
     names = ["alice", "bob", "charlie"]
     capitalized_names = []
-    names.each do |name|
+    names.map do |name|
       capitalized_names << name.capitalize
     end
     expect(capitalized_names).to eq(["Alice", "Bob", "Charlie"])
   end
 
-  xit 'test 2' do
+  it 'test 2' do
     family = {
       mother: "alice",
       father: "bob",
       brother: "charlie"
     }
     capitalized_family = {}
-    family.each do |relationship, name|
+    family.map do |relationship, name|
       capitalized_family[relationship] = name.capitalize
     end
     expected = {
@@ -27,16 +27,16 @@ RSpec.describe 'map pattern' do
     expect(capitalized_family).to eq(expected)
   end
 
-  xit 'test 3' do
+  it 'test 3' do
     numbers = [1, 2, 3, 4, 5]
     doubles = []
-    numbers.each do |number|
-      # Your Code Here
+    numbers.map do |number|
+      doubles << number * 2
     end
     expect(doubles).to eq([2, 4, 6, 8, 10])
   end
 
-  xit 'test 4' do
+  it 'test 4' do
     numbers = {
       one: 1,
       two: 2,
@@ -46,7 +46,7 @@ RSpec.describe 'map pattern' do
     }
     doubles = {}
     numbers.each do |name, number|
-      # Your Code Here
+      doubles[name] = number * 2 # at each name (key) double the value of number
     end
     expected = {
       one: 2,
@@ -58,15 +58,17 @@ RSpec.describe 'map pattern' do
     expect(doubles).to eq(expected)
   end
 
-  xit 'test 5' do
+  it 'test 5' do
     numbers = [1, 2, 3, 4, 5]
     squares = []
-    # Your Code Here
+    numbers.map do |number|
+      squares << number ** 2
+    end
 
     expect(squares).to eq([1, 4, 9, 16, 25])
   end
 
-  xit 'test 6' do
+  it 'test 6' do
     numbers = {
       one: 1,
       two: 2,
@@ -75,8 +77,9 @@ RSpec.describe 'map pattern' do
       five: 5
     }
     squares = {}
-    # Your Code Here
-
+    numbers.map do |name,number|
+      squares[name] = number ** 2
+    end
     expected = {
       one: 1,
       two: 4,
@@ -87,14 +90,17 @@ RSpec.describe 'map pattern' do
     expect(squares).to eq(expected)
   end
 
-  xit 'test 7' do
+  it 'test 7' do
     names = ["alice", "bob", "charlie", "david", "eve"]
-    #Your Code Here
+    lengths = []
+    names.map do |name|
+      lengths << name.length
+    end
 
     expect(lengths).to eq([5, 3, 7, 5, 3])
   end
 
-  xit 'test 8' do
+  it 'test 8' do
     family = {
       mother: "alice",
       father: "bob",
@@ -102,7 +108,11 @@ RSpec.describe 'map pattern' do
       uncle: "david",
       sister: "eve"
     }
-    #Your Code Here
+    lengths = {}
+
+    family.map do |relationship, name|
+      lengths[relationship] = name.length
+    end
 
     expected = {
       mother: 5,
@@ -114,14 +124,17 @@ RSpec.describe 'map pattern' do
     expect(lengths).to eq(expected)
   end
 
-  xit 'test 9' do
+  it 'test 9' do
     names = ["alice", "bob", "charlie", "david", "eve"]
-    #Your Code Here
+    backwards = []
+    names.map do |name|
+      backwards << name.reverse
+    end
 
     expect(backwards).to eq(["ecila", "bob", "eilrahc", "divad", "eve"])
   end
 
-  xit 'test 10' do
+  it 'test 10' do
     family = {
       mother: "alice",
       father: "bob",
@@ -129,7 +142,10 @@ RSpec.describe 'map pattern' do
       uncle: "david",
       sister: "eve"
     }
-    #Your Code Here
+    backwards = {}
+    family.map do |relationship, name|
+      backwards[relationship] = name.reverse
+    end
 
     expected = {
       mother: "ecila",
