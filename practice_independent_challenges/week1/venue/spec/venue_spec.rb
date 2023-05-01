@@ -63,9 +63,19 @@ describe Venue do
   end
 
   # Iteration 4
-  describe '' do
-    it '' do 
-      
+  describe '#kick_out' do
+    it 'kicks out the patron there the longest' do 
+      venue = Venue.new('Bluebird', 4)
+      venue.add_patron('Mike')
+      venue.add_patron('Megan')
+      venue.add_patron('Bob')
+      venue.add_patron('James')
+      venue.add_patron('Cat')
+      expect(venue.over_capacity?).to eq true
+
+      venue.kick_out
+      expect(venue.patrons).to eq(%w[Megan Bob James Cat])
+      expect(venue.over_capacity?). to eq false
     end
   end
 end
