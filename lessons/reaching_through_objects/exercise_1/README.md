@@ -125,9 +125,9 @@ Example:
 adlington.list_available_apartments
 # =>
 {
-  "Zebra Apartments" => ["bedroom", "laundry"]
-  "Savills Apartment Building" => ["bathroom", "bedroom", "kitchen", "laundry"]
-  "Savills Apartment Building" => ["bathroom", "bedroom", "laundry"]
+  "Savilles Apartment Building" => ["bathroom", "bedroom"],
+  "Savilles Apartment Building" => ["kitchen", "office", "bedroom"],
+  "Zebra Apartments" => ["Laundry", "studio"]
 }
 ```
 
