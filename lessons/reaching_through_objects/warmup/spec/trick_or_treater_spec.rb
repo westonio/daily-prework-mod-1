@@ -11,27 +11,27 @@ RSpec.describe TrickOrTreater do
     expect(trick_or_treater.dressed_up_as).to eq('Cowboy')
   end
 
-  xit 'can have a different costume' do
+  it 'can have a different costume' do
     trick_or_treater = TrickOrTreater.new(Costume.new('Alien'))
 
     expect(trick_or_treater.dressed_up_as).to eq('Alien')
   end
 
-  xit 'has an empty bag by default' do
+  it 'has an empty bag by default' do
     trick_or_treater = TrickOrTreater.new(Costume.new("Alien"))
 
     expect(trick_or_treater.bag.empty?).to be true
   end
 
-  xit 'has an empty bag, so no candies' do
+  it 'has an empty bag, so no candies' do
     trick_or_treater = TrickOrTreater.new(Costume.new("Knight"))
 
     expect(trick_or_treater.has_candy?).to be false
   end
 
-  xit 'can get candies' do
+  it 'can get candies' do
     trick_or_treater = TrickOrTreater.new(Costume.new('Spaceship Mechanic'))
-    trick_or_treater.bag << Candy.new('Gummy bears')
+    trick_or_treater.bag.add_candy(Candy.new('Gummy bears'))
 
     expect(trick_or_treater.has_candy?).to be true
   end
