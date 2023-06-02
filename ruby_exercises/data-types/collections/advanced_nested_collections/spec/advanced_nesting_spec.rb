@@ -140,14 +140,10 @@ RSpec.describe 'Advanced Nested Collections' do
   it 'test 11' do
     # Return a full menu across all restaurants
     full_menu = {}
-    stores[:olive_garden][:dishes].map do |dish|
-      full_menu[dish[:name]] = dish
-    end
-    stores[:dennys][:dishes].map do |dish|
-      full_menu[dish[:name]] = dish
-    end
-    stores[:macdonalds][:dishes].map do |dish|
-      full_menu[dish[:name]] = dish
+    stores.each do |store, info|
+      info[:dishes].each do |dish|
+        full_menu[dish[:name]] = dish
+      end
     end
 
     expected = {
