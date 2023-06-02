@@ -2,9 +2,9 @@ require './lib/ceo'
 require './lib/manager'
 require './lib/intern'
 
-ali = Ceo.new(15, 20)
-ben = Manager.new(10)
-chris = Intern.new(5)
+ali = Ceo.new("Ali", 41235, 15, 20)
+ben = Manager.new("Ben", 82735, 10)
+chris = Intern.new("Chris", 32145, 5)
 
 require "pry"; binding.pry
 
