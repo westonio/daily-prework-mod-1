@@ -6,7 +6,6 @@ RSpec.describe Boat do
   end
 
   it 'exists' do
-    expect(@kayak.exists?).to eq true
     expect(@kayak).to be_a Boat
   end
 

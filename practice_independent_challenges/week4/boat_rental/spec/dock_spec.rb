@@ -34,4 +34,26 @@ RSpec.describe Dock do
     expected = {@kayak_1 => @patrick, @kayak_2 => @patrick, @sup_1 => @eugene}
     expect(@dock.rental_log).to eq(expected)
   end
+
+  it 'can charge for the boat rental' do
+    @dock.rent(@kayak_1, @patrick)
+    @kayak_1.add_hour
+    @kayak_1.add_hour
+
+    expected = {:card_number => @patrick.credit_card_number, :amount => 40}
+
+    expect(@dock.charge(@kayak_1,@patrick)).to eq(expected)
+  end
+
+  it 'can only charge up to max rental time(3 for @dock)' do
+    @dock.rent(@kayak_1, @patrick)
+    @kayak_1.add_hour
+    @kayak_1.add_hour
+    @kayak_1.add_hour
+    @kayak_1.add_hour
+    
+    expected_charge = {:card_number => @patrick.credit_card_number, :amount => 60}
+    expect(@kayak_1.hours_rented).to eq(4)
+    expect(@dock.charge(@kayak_1,@patrick)).to eq(expected_charge)
+  end
 end
