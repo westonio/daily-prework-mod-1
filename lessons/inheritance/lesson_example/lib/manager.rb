@@ -18,6 +18,7 @@ class Manager < Employee
   end
 
   def total_compensation
-    @base_salary * @per_team_rate
+    @bonus = @base_salary * @per_team_rate
+    super
   end
 end

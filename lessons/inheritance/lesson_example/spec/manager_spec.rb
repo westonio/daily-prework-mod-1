@@ -37,7 +37,7 @@ end
     end
     # Also, a Manager should be able to receive a total compensation. Write at least one test that proves they can access this method.
     it 'calculates compensation from employee method' do
-      expect(@manager.total_compensation).to eq(60)
+      expect(@manager.total_compensation).to eq(72)
     end
   end
 end
