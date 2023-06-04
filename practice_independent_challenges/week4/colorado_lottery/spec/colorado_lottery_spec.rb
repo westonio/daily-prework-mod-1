@@ -56,7 +56,7 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.interested_and_18?(@alexander, @cash_5)).to be false
   end
 
-  it 'can determin if contestant can register' do
+  it 'can determine if contestant can register' do
     @alexander.add_game_interest('Pick 4')
     @alexander.add_game_interest('Mega Millions')
     @frederick.add_game_interest('Mega Millions')
@@ -67,5 +67,13 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.can_register?(@frederick, @mega_millions)).to be true
     expect(@lottery.can_register?(@benjamin, @mega_millions)).to be false
     expect(@lottery.can_register?(@frederick, @cash_5)).to be false
+  end
+
+  it 'can register contestands' do
+    @alexander.add_game_interest('Pick 4')
+    expect(@lottery.can_register?(@alexander, @pick_4)).to be true
+    expect(@lottery.can_register?(@alexander, @cash_5)).to be false
+
+    @lottery.register_contestant(@alexander, @pick_4)
   end
 end
