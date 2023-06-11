@@ -17,6 +17,30 @@ RSpec.describe Curator do
       artist_id: "2",      
       year: "1941"      
     })  
+    @photo_3 = Photograph.new({
+      id: "3",      
+      name: "Sunrise, Hernandez",      
+      artist_id: "2",      
+      year: "1963"      
+    })
+    @photo_4 = Photograph.new({
+      id: "4",      
+      name: "Taipei Bridge",      
+      artist_id: "3",      
+      year: "1927"      
+    })
+    @photo_5 = Photograph.new({
+      id: "5",      
+      name: "The Family of Yang Zhaojia",      
+      artist_id: "3",      
+      year: "1936"      
+    })
+    @photo_6 = Photograph.new({
+      id: "6",      
+      name: "Reclining Nude",      
+      artist_id: "3",      
+      year: "1936"      
+    })
     @artist_1 = Artist.new({
       id: "1",      
       name: "Henri Cartier-Bresson",      
@@ -30,6 +54,13 @@ RSpec.describe Curator do
       born: "1902",      
       died: "1984",      
       country: "United States"      
+    })  
+    @artist_3 = Artist.new({
+      id: "3",      
+      name: "Lee Shih-chiao",      
+      born: "1908",      
+      died: "1995",      
+      country: "Taiwan"      
     })  
   end
 
@@ -58,5 +89,40 @@ RSpec.describe Curator do
     @curator.add_artist(@artist_1)
     @curator.add_artist(@artist_2)
     expect(@curator.find_artist_by_id("1")).to eq(@artist_1)
+  end
+
+  it 'has list of artists and their photographs' do
+    @curator.add_photograph(@photo_1)
+    @curator.add_photograph(@photo_2)
+    @curator.add_photograph(@photo_3)
+    @curator.add_artist(@artist_1)
+    @curator.add_artist(@artist_2)
+
+    expected = {@artist_1 => [@photo_1], @artist_2 => [@photo_2, @photo_3]}
+    expect(@curator.artist_photos).to eq(expected)
+  end
+
+  it 'has list of artists with numerous photographs' do
+    @curator.add_artist(@artist_1)
+      @curator.add_photograph(@photo_1)
+    @curator.add_artist(@artist_2)
+      @curator.add_photograph(@photo_2)
+      @curator.add_photograph(@photo_3)
+    @curator.add_artist(@artist_3)
+      @curator.add_photograph(@photo_4)
+      @curator.add_photograph(@photo_5)
+      @curator.add_photograph(@photo_6)
+
+    expect(@curator.artists_with_multiple).to eq([@artist_2, @artist_3])
+
+  end
+
+  it 'can find artist from given country and lists photographs by the given country' do
+    @curator.add_artist(@artist_3)
+      @curator.add_photograph(@photo_4)
+      @curator.add_photograph(@photo_5)
+      @curator.add_photograph(@photo_6)
+
+    expect(@curator.photographs_from("Taiwan")).to eq([@photo_4, @photo_5, @photo_6])
   end
 end
